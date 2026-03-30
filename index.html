@@ -150,6 +150,7 @@
 
     .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
     .reveal.visible { opacity: 1; transform: none; }
+    .no-js .reveal { opacity: 1; transform: none; }
 
     @media (max-width: 900px) {
       nav { padding: 1.2rem 1.5rem; }
@@ -393,11 +394,11 @@
           <span class="contact-card-val">github.com/jameskins-svg</span>
         </div>
       </a>
-      <a href="mailto:emmjayjames@gmail.com" class="contact-card">
+      <a href="/cdn-cgi/l/email-protection#4b2e2626212a32212a262e380b2c262a222765282426" class="contact-card">
         <span class="contact-card-icon">✉️</span>
         <div class="contact-card-info">
           <span class="contact-card-label">Email</span>
-          <span class="contact-card-val">emmjayjames@gmail.com</span>
+          <span class="contact-card-val"><span class="__cf_email__" data-cfemail="46232b2b2c273f2c272b233506212b272f2a6825292b">[email&#160;protected]</span></span>
         </div>
       </a>
       <a href="https://linkedin.com/in/yourhandle" class="contact-card" target="_blank">
@@ -465,7 +466,7 @@
   .modal-no-link { font-family: 'DM Mono', monospace; font-size: 0.75rem; color: #6b7e94; letter-spacing: 0.08em; }
 </style>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   const projects = {
     p1: {
       type: 'Data Cleaning',
@@ -565,8 +566,13 @@
     entries.forEach((e, i) => {
       if (e.isIntersecting) { setTimeout(() => e.target.classList.add('visible'), i * 80); observer.unobserve(e.target); }
     });
-  }, { threshold: 0.1 });
+  }, { threshold: 0, rootMargin: '0px 0px -50px 0px' });
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Fallback: reveal everything after 1.5s in case observer doesn't fire
+  setTimeout(() => {
+    document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
+  }, 1500);
 
   const sections = document.querySelectorAll('section[id]');
   const navLinks = document.querySelectorAll('.nav-links a');
@@ -580,10 +586,4 @@
     'Turning raw data into real insights.',
     'Cleaning datasets, one column at a time.',
     'Building dashboards that drive decisions.',
-    'Finding the story hiding in your data.'
-  ];
-  let li = 0, ci = 0, del = false;
-  const tw = document.getElementById('typewriter');
-  function type() {
-    const cur = lines[li];
-    tw.textContent = del ? cur.slice(0, --ci) : cur.slice(0, ++ci);
+    
