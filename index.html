@@ -21,93 +21,195 @@
       --mono-font: 'DM Mono', monospace;
       --body-font: 'Outfit', sans-serif;
     }
+
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body { background: var(--bg); color: var(--text); font-family: var(--body-font); overflow-x: hidden; }
-    body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events: none; z-index: 1000; opacity: 0.35; }
 
-    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1.4rem 4rem; background: rgba(8,11,16,0.88); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); }
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.4rem 4rem;
+      background: rgba(8,11,16,0.92);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
     .nav-logo { font-family: var(--heading-font); font-size: 1.6rem; letter-spacing: 0.08em; color: var(--accent); }
     .nav-links { display: flex; gap: 2.5rem; list-style: none; }
-    .nav-links a { font-family: var(--mono-font); font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.25s; position: relative; }
-    .nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; right: 0; height: 1px; background: var(--accent); transform: scaleX(0); transform-origin: left; transition: transform 0.3s; }
+    .nav-links a {
+      font-family: var(--mono-font); font-size: 0.78rem; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--muted); text-decoration: none;
+      transition: color 0.25s; position: relative;
+    }
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: -4px; left: 0; right: 0;
+      height: 1px; background: var(--accent);
+      transform: scaleX(0); transform-origin: left; transition: transform 0.3s;
+    }
     .nav-links a:hover { color: var(--accent); }
     .nav-links a:hover::after { transform: scaleX(1); }
 
-    #hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; align-items: center; padding: 8rem 4rem 4rem; position: relative; overflow: hidden; }
-    .hero-grid-bg { position: absolute; inset: 0; background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px); background-size: 60px 60px; opacity: 0.3; mask-image: radial-gradient(ellipse at 60% 50%, black 30%, transparent 70%); }
-    .hero-glow { position: absolute; width: 700px; height: 700px; border-radius: 50%; background: radial-gradient(circle, rgba(0,245,196,0.07) 0%, transparent 70%); right: -100px; top: 50%; transform: translateY(-50%); pointer-events: none; }
+    /* HERO */
+    #hero {
+      min-height: 100vh;
+      display: grid; grid-template-columns: 1fr 1fr;
+      align-items: center; padding: 8rem 4rem 4rem;
+      position: relative; overflow: hidden;
+    }
+    .hero-grid-bg {
+      position: absolute; inset: 0;
+      background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px);
+      background-size: 60px 60px; opacity: 0.3;
+      mask-image: radial-gradient(ellipse at 60% 50%, black 30%, transparent 70%);
+    }
+    .hero-glow {
+      position: absolute; width: 700px; height: 700px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(0,245,196,0.07) 0%, transparent 70%);
+      right: -100px; top: 50%; transform: translateY(-50%); pointer-events: none;
+    }
     .hero-text { position: relative; z-index: 2; }
-    .hero-eyebrow { font-family: var(--mono-font); font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.2rem; display: flex; align-items: center; gap: 0.8rem; }
+    .hero-eyebrow {
+      font-family: var(--mono-font); font-size: 0.75rem; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--accent); margin-bottom: 1.2rem;
+      display: flex; align-items: center; gap: 0.8rem;
+    }
     .hero-eyebrow::before { content: ''; width: 2.5rem; height: 1px; background: var(--accent); display: block; }
-    .hero-name { font-family: var(--heading-font); font-size: clamp(3.5rem, 7vw, 7rem); line-height: 0.92; letter-spacing: 0.02em; margin-bottom: 0.6rem; }
+    .hero-name {
+      font-family: var(--heading-font); font-size: clamp(3.5rem, 7vw, 7rem);
+      line-height: 0.92; letter-spacing: 0.02em; margin-bottom: 0.6rem;
+    }
     .hero-name .line2 { color: transparent; -webkit-text-stroke: 1.5px var(--text); }
-    .hero-title { font-family: var(--serif-font); font-style: italic; font-size: clamp(1.1rem, 2.2vw, 1.6rem); color: var(--accent3); margin: 1.2rem 0 1.8rem; min-height: 2.2rem; }
+    .hero-title {
+      font-family: var(--serif-font); font-style: italic;
+      font-size: clamp(1.1rem, 2.2vw, 1.6rem); color: var(--accent3);
+      margin: 1.2rem 0 1.8rem; min-height: 2.2rem;
+    }
     .hero-desc { font-size: 1rem; line-height: 1.8; color: var(--muted); max-width: 440px; margin-bottom: 2.5rem; }
     .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
-    .btn-primary { font-family: var(--mono-font); font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.9rem 2rem; background: var(--accent); color: var(--bg); border: none; border-radius: 2px; text-decoration: none; font-weight: 500; transition: transform 0.2s, box-shadow 0.2s; display: inline-block; }
+
+    .btn-primary {
+      font-family: var(--mono-font); font-size: 0.8rem; letter-spacing: 0.1em;
+      text-transform: uppercase; padding: 0.9rem 2rem;
+      background: var(--accent); color: var(--bg); border: none; border-radius: 2px;
+      text-decoration: none; font-weight: 500; cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s; display: inline-block;
+    }
     .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(0,245,196,0.25); }
-    .btn-secondary { font-family: var(--mono-font); font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.9rem 2rem; background: transparent; color: var(--text); border: 1px solid var(--border); border-radius: 2px; text-decoration: none; transition: border-color 0.2s, color 0.2s; display: inline-block; }
+    .btn-secondary {
+      font-family: var(--mono-font); font-size: 0.8rem; letter-spacing: 0.1em;
+      text-transform: uppercase; padding: 0.9rem 2rem;
+      background: transparent; color: var(--text); border: 1px solid var(--border);
+      border-radius: 2px; text-decoration: none; display: inline-block;
+      transition: border-color 0.2s, color 0.2s;
+    }
     .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
 
+    /* HERO VISUAL */
     .hero-visual { position: relative; z-index: 2; display: flex; align-items: center; justify-content: center; }
     .data-orb { position: relative; width: 360px; height: 360px; }
     .orb-ring { position: absolute; inset: 0; border-radius: 50%; border: 1px solid; animation: spin linear infinite; }
     .orb-ring:nth-child(1) { border-color: rgba(0,245,196,0.2); animation-duration: 20s; }
     .orb-ring:nth-child(2) { inset: 30px; border-color: rgba(255,77,109,0.15); animation-duration: 14s; animation-direction: reverse; }
     .orb-ring:nth-child(3) { inset: 60px; border-color: rgba(255,209,102,0.1); animation-duration: 10s; }
-    .orb-core { position: absolute; inset: 90px; border-radius: 50%; background: radial-gradient(circle at 40% 35%, rgba(0,245,196,0.12), rgba(0,245,196,0.02)); border: 1px solid rgba(0,245,196,0.25); display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 0.3rem; text-align: center; padding: 1rem; }
+    .orb-core {
+      position: absolute; inset: 90px; border-radius: 50%;
+      background: radial-gradient(circle at 40% 35%, rgba(0,245,196,0.12), rgba(0,245,196,0.02));
+      border: 1px solid rgba(0,245,196,0.25);
+      display: flex; align-items: center; justify-content: center;
+      flex-direction: column; gap: 0.3rem; text-align: center; padding: 1rem;
+    }
     .orb-icon { font-size: 2.2rem; }
     .orb-stat-label { font-family: var(--mono-font); font-size: 0.6rem; color: var(--muted); letter-spacing: 0.12em; text-transform: uppercase; }
-    .data-point { position: absolute; font-family: var(--mono-font); font-size: 0.7rem; color: var(--accent); opacity: 0.7; animation: float 4s ease-in-out infinite; }
-    .data-point:nth-child(5) { top: 10%; left: 8%; animation-delay: 0s; }
+    .data-point {
+      position: absolute; font-family: var(--mono-font); font-size: 0.7rem;
+      color: var(--accent); opacity: 0.7; animation: float 4s ease-in-out infinite;
+    }
+    .data-point:nth-child(5) { top: 10%; left: 8%; }
     .data-point:nth-child(6) { top: 12%; right: 6%; animation-delay: 0.8s; color: var(--accent3); }
     .data-point:nth-child(7) { bottom: 18%; left: 4%; animation-delay: 1.6s; color: var(--accent2); }
     .data-point:nth-child(8) { bottom: 12%; right: 12%; animation-delay: 2.4s; }
     @keyframes spin { to { transform: rotate(360deg); } }
     @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
 
+    /* SECTIONS */
     section { padding: 7rem 4rem; position: relative; }
-    .section-label { font-family: var(--mono-font); font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.8rem; display: flex; align-items: center; gap: 0.8rem; }
+    .section-label {
+      font-family: var(--mono-font); font-size: 0.72rem; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--accent); margin-bottom: 0.8rem;
+      display: flex; align-items: center; gap: 0.8rem;
+    }
     .section-label::before { content: ''; width: 2rem; height: 1px; background: var(--accent); display: block; }
-    .section-heading { font-family: var(--heading-font); font-size: clamp(3rem, 6vw, 5.5rem); line-height: 0.95; letter-spacing: 0.02em; margin-bottom: 3.5rem; }
+    .section-heading {
+      font-family: var(--heading-font); font-size: clamp(3rem, 6vw, 5.5rem);
+      line-height: 0.95; letter-spacing: 0.02em; margin-bottom: 3.5rem;
+    }
 
+    /* ABOUT */
     #about { background: var(--surface); }
     .about-grid { display: grid; grid-template-columns: 1fr 1.3fr; gap: 5rem; align-items: center; }
     .about-image-wrap { position: relative; }
-    .about-image-frame { width: 100%; aspect-ratio: 4/5; background: var(--card); border: 1px solid var(--border); border-radius: 4px; overflow: hidden; position: relative; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 0.8rem; }
-    .about-image-frame::after { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(0,245,196,0.05) 0%, transparent 60%); pointer-events: none; }
+    .about-image-frame {
+      width: 100%; aspect-ratio: 4/5; background: var(--card);
+      border: 1px solid var(--border); border-radius: 4px; overflow: hidden;
+      position: relative; display: flex; align-items: center; justify-content: center;
+      flex-direction: column; gap: 0.8rem;
+    }
+    .about-image-frame::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(0,245,196,0.05) 0%, transparent 60%);
+      pointer-events: none;
+    }
     .about-placeholder { font-family: var(--mono-font); font-size: 0.72rem; color: var(--muted); text-align: center; padding: 1rem; line-height: 1.8; }
-    .about-accent-box { position: absolute; bottom: -1.5rem; right: -1.5rem; width: 92px; height: 92px; background: var(--accent); border-radius: 2px; display: flex; align-items: center; justify-content: center; flex-direction: column; z-index: 2; }
+    .about-accent-box {
+      position: absolute; bottom: -1.5rem; right: -1.5rem;
+      width: 92px; height: 92px; background: var(--accent); border-radius: 2px;
+      display: flex; align-items: center; justify-content: center;
+      flex-direction: column; z-index: 2;
+    }
     .about-accent-box .icon { font-size: 1.6rem; }
     .about-accent-box .lbl { font-family: var(--mono-font); font-size: 0.52rem; color: var(--bg); text-align: center; line-height: 1.4; padding: 0 4px; font-weight: 500; }
     .about-body p { color: var(--muted); line-height: 1.85; margin-bottom: 1.2rem; font-size: 1rem; }
     .about-body p strong { color: var(--text); font-weight: 600; }
     .about-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.8rem; }
-    .about-tag { font-family: var(--mono-font); font-size: 0.72rem; padding: 0.35rem 0.85rem; border: 1px solid var(--border); border-radius: 2px; color: var(--muted); letter-spacing: 0.08em; transition: border-color 0.2s, color 0.2s; }
+    .about-tag {
+      font-family: var(--mono-font); font-size: 0.72rem; padding: 0.35rem 0.85rem;
+      border: 1px solid var(--border); border-radius: 2px; color: var(--muted);
+      letter-spacing: 0.08em; transition: border-color 0.2s, color 0.2s;
+    }
     .about-tag:hover { border-color: var(--accent); color: var(--accent); }
 
+    /* SKILLS */
     #skills { background: var(--bg); }
-    .skills-categories { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5px; background: var(--border); border: 1px solid var(--border); margin-bottom: 4rem; }
+    .skills-categories {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1.5px; background: var(--border); border: 1px solid var(--border);
+    }
     .skill-card { background: var(--card); padding: 2rem 1.8rem; transition: background 0.25s; position: relative; overflow: hidden; }
-    .skill-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--accent), transparent); transform: scaleX(0); transform-origin: left; transition: transform 0.4s; }
+    .skill-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, var(--accent), transparent);
+      transform: scaleX(0); transform-origin: left; transition: transform 0.4s;
+    }
     .skill-card:hover { background: #151f2a; }
     .skill-card:hover::before { transform: scaleX(1); }
     .skill-card-icon { font-size: 1.8rem; margin-bottom: 1rem; }
     .skill-card-title { font-family: var(--heading-font); font-size: 1.2rem; letter-spacing: 0.05em; margin-bottom: 1rem; }
     .skill-list { list-style: none; display: flex; flex-wrap: wrap; gap: 0.4rem; }
-    .skill-list li { font-family: var(--mono-font); font-size: 0.7rem; padding: 0.25rem 0.6rem; background: rgba(0,245,196,0.06); border: 1px solid rgba(0,245,196,0.15); color: var(--accent); border-radius: 2px; letter-spacing: 0.06em; }
-    .skill-bars h3 { font-family: var(--serif-font); font-size: 1.4rem; margin-bottom: 1.8rem; color: var(--muted); }
-    .skill-bar-row { display: flex; align-items: center; gap: 1.5rem; margin-bottom: 1.2rem; }
-    .skill-bar-label { font-family: var(--mono-font); font-size: 0.75rem; letter-spacing: 0.1em; color: var(--muted); min-width: 140px; text-transform: uppercase; }
-    .skill-bar-track { flex: 1; height: 3px; background: var(--border); overflow: hidden; }
-    .skill-bar-fill { height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent3)); transform-origin: left; animation: barGrow 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards; transform: scaleX(0); }
-    .skill-bar-pct { font-family: var(--mono-font); font-size: 0.72rem; color: var(--accent); min-width: 36px; text-align: right; }
-    @keyframes barGrow { to { transform: scaleX(1); } }
+    .skill-list li {
+      font-family: var(--mono-font); font-size: 0.7rem; padding: 0.25rem 0.6rem;
+      background: rgba(0,245,196,0.06); border: 1px solid rgba(0,245,196,0.15);
+      color: var(--accent); border-radius: 2px; letter-spacing: 0.06em;
+    }
 
+    /* PROJECTS */
     #projects { background: var(--surface); }
     .projects-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--border); }
-    .project-card { background: var(--card); padding: 2.5rem; position: relative; overflow: hidden; transition: background 0.25s; display: flex; flex-direction: column; }
+    .project-card {
+      background: var(--card); padding: 2.5rem; position: relative;
+      overflow: hidden; transition: background 0.25s;
+      display: flex; flex-direction: column; cursor: pointer;
+    }
     .project-card:hover { background: #151f2a; }
     .project-num { font-family: var(--heading-font); font-size: 4rem; color: var(--border); line-height: 1; margin-bottom: 1rem; transition: color 0.25s; }
     .project-card:hover .project-num { color: rgba(0,245,196,0.12); }
@@ -115,17 +217,32 @@
     .project-title { font-family: var(--serif-font); font-size: 1.4rem; color: var(--text); margin-bottom: 0.9rem; line-height: 1.3; }
     .project-desc { font-size: 0.9rem; line-height: 1.75; color: var(--muted); flex: 1; margin-bottom: 1.5rem; }
     .project-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1.5rem; }
-    .project-tag { font-family: var(--mono-font); font-size: 0.65rem; padding: 0.2rem 0.55rem; background: rgba(255,77,109,0.08); border: 1px solid rgba(255,77,109,0.2); color: var(--accent2); border-radius: 2px; letter-spacing: 0.06em; }
-    .project-link { font-family: var(--mono-font); font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; width: fit-content; transition: gap 0.2s; }
-    .project-link:hover { gap: 0.8rem; }
+    .project-tag {
+      font-family: var(--mono-font); font-size: 0.65rem; padding: 0.2rem 0.55rem;
+      background: rgba(255,77,109,0.08); border: 1px solid rgba(255,77,109,0.2);
+      color: var(--accent2); border-radius: 2px; letter-spacing: 0.06em;
+    }
+    .project-link {
+      font-family: var(--mono-font); font-size: 0.75rem; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--accent);
+      display: flex; align-items: center; gap: 0.5rem; width: fit-content;
+      transition: gap 0.2s;
+    }
+    .project-card:hover .project-link { gap: 0.8rem; }
 
+    /* CONTACT */
     #contact { background: var(--bg); }
     .contact-inner { max-width: 760px; }
     .contact-big { font-family: var(--heading-font); font-size: clamp(3rem, 7vw, 6rem); line-height: 0.92; letter-spacing: 0.02em; margin-bottom: 1.5rem; }
     .contact-big .hollow { color: transparent; -webkit-text-stroke: 1.5px var(--accent3); }
     .contact-sub { font-size: 1rem; color: var(--muted); line-height: 1.75; max-width: 480px; margin-bottom: 3rem; }
     .contact-cards { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 3rem; }
-    .contact-card { display: flex; align-items: center; gap: 0.8rem; padding: 1rem 1.4rem; background: var(--card); border: 1px solid var(--border); border-radius: 2px; text-decoration: none; transition: border-color 0.2s, transform 0.2s; color: var(--text); }
+    .contact-card {
+      display: flex; align-items: center; gap: 0.8rem;
+      padding: 1rem 1.4rem; background: var(--card); border: 1px solid var(--border);
+      border-radius: 2px; text-decoration: none;
+      transition: border-color 0.2s, transform 0.2s; color: var(--text);
+    }
     .contact-card:hover { border-color: var(--accent); transform: translateY(-2px); }
     .contact-card-icon { font-size: 1.2rem; }
     .contact-card-info { display: flex; flex-direction: column; }
@@ -135,21 +252,64 @@
     .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
     .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
     .form-label { font-family: var(--mono-font); font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
-    .form-input, .form-textarea { background: var(--card); border: 1px solid var(--border); border-radius: 2px; padding: 0.85rem 1rem; color: var(--text); font-family: var(--body-font); font-size: 0.95rem; outline: none; transition: border-color 0.2s; resize: none; }
+    .form-input, .form-textarea {
+      background: var(--card); border: 1px solid var(--border); border-radius: 2px;
+      padding: 0.85rem 1rem; color: var(--text); font-family: var(--body-font);
+      font-size: 0.95rem; outline: none; transition: border-color 0.2s; resize: none;
+    }
     .form-input:focus, .form-textarea:focus { border-color: var(--accent); }
     .form-textarea { min-height: 120px; }
 
-    footer { padding: 2.5rem 4rem; background: var(--bg); border-top: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
+    /* FOOTER */
+    footer {
+      padding: 2.5rem 4rem; background: var(--bg);
+      border-top: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+    }
     .footer-logo { font-family: var(--heading-font); font-size: 1.3rem; letter-spacing: 0.08em; color: var(--accent); }
     .footer-copy { font-family: var(--mono-font); font-size: 0.7rem; color: var(--muted); letter-spacing: 0.08em; }
     .footer-links { display: flex; gap: 1.5rem; list-style: none; }
     .footer-links a { font-family: var(--mono-font); font-size: 0.7rem; color: var(--muted); text-decoration: none; letter-spacing: 0.08em; transition: color 0.2s; }
     .footer-links a:hover { color: var(--accent); }
 
-    .reveal { opacity: 1; transform: none; }
-    .js-ready .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
-    .js-ready .reveal.visible { opacity: 1; transform: none; }
+    /* MODAL */
+    .modal-overlay {
+      display: none; position: fixed; inset: 0;
+      background: rgba(0,0,0,0.8); z-index: 500; backdrop-filter: blur(6px);
+    }
+    .modal-overlay.open { display: block; }
+    .modal-box {
+      display: none; position: fixed; top: 50%; left: 50%;
+      transform: translate(-50%, -50%); z-index: 600;
+      width: min(680px, 92vw); max-height: 85vh; overflow-y: auto;
+      background: #111820; border: 1px solid #1e2d3d; border-radius: 4px; padding: 2.5rem;
+    }
+    .modal-box.open { display: block; }
+    .modal-close {
+      position: absolute; top: 1.2rem; right: 1.4rem;
+      background: none; border: none; color: var(--muted);
+      font-size: 1.4rem; cursor: pointer; line-height: 1;
+    }
+    .modal-close:hover { color: var(--text); }
+    .modal-type { font-family: var(--mono-font); font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.6rem; }
+    .modal-title { font-family: var(--serif-font); font-size: 1.8rem; color: var(--text); margin-bottom: 1.2rem; line-height: 1.2; }
+    .modal-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1.5rem; }
+    .modal-tag { font-family: var(--mono-font); font-size: 0.65rem; padding: 0.2rem 0.6rem; background: rgba(255,77,109,0.08); border: 1px solid rgba(255,77,109,0.2); color: var(--accent2); border-radius: 2px; }
+    .modal-body { font-size: 0.95rem; line-height: 1.8; color: var(--muted); margin-bottom: 1.5rem; }
+    .modal-body p { margin-bottom: 0.9rem; }
+    .modal-body strong { color: var(--text); }
+    .modal-divider { height: 1px; background: var(--border); margin: 1.4rem 0; }
+    .modal-gh-btn {
+      font-family: var(--mono-font); font-size: 0.78rem; letter-spacing: 0.1em;
+      text-transform: uppercase; padding: 0.8rem 1.6rem;
+      background: var(--accent); color: var(--bg); border-radius: 2px;
+      text-decoration: none; font-weight: 500; display: inline-block;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .modal-gh-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,245,196,0.2); }
+    .modal-no-link { font-family: var(--mono-font); font-size: 0.75rem; color: var(--muted); letter-spacing: 0.08em; }
 
+    /* RESPONSIVE */
     @media (max-width: 900px) {
       nav { padding: 1.2rem 1.5rem; }
       .nav-links { gap: 1.2rem; }
@@ -166,6 +326,7 @@
 </head>
 <body>
 
+<!-- NAV -->
 <nav>
   <div class="nav-logo">JM.</div>
   <ul class="nav-links">
@@ -219,12 +380,12 @@
   <div class="section-label">Who I Am</div>
   <h2 class="section-heading">ABOUT<br>ME.</h2>
   <div class="about-grid">
-    <div class="about-image-wrap reveal">
+    <div class="about-image-wrap">
       <div class="about-image-frame">
         <div class="about-placeholder">
           📷<br><br>
           Your photo here<br>
-          <span style="font-size:0.62rem;opacity:0.5">(replace with &lt;img&gt; tag)</span>
+          <span style="font-size:0.62rem;opacity:0.5">(replace with an img tag)</span>
         </div>
       </div>
       <div class="about-accent-box">
@@ -232,7 +393,7 @@
         <div class="lbl">Nairobi, Kenya</div>
       </div>
     </div>
-    <div class="about-body reveal">
+    <div class="about-body">
       <p>
         Hi, I'm <strong>James Munene Mwai</strong> — a data enthusiast with a passion for
         cleaning, analyzing, and visualizing data to drive meaningful decision-making.
@@ -266,7 +427,7 @@
 <section id="skills">
   <div class="section-label">What I Use</div>
   <h2 class="section-heading">TOOLS &amp;<br>SKILLS.</h2>
-  <div class="skills-categories reveal">
+  <div class="skills-categories">
     <div class="skill-card">
       <div class="skill-card-icon">🧹</div>
       <div class="skill-card-title">Data Cleaning</div>
@@ -296,7 +457,6 @@
       </ul>
     </div>
   </div>
-
 </section>
 
 <!-- PROJECTS -->
@@ -304,7 +464,8 @@
   <div class="section-label">Featured Work</div>
   <h2 class="section-heading">PROJECTS.</h2>
   <div class="projects-grid">
-    <div class="project-card reveal" onclick="openModal('p1')">
+
+    <div class="project-card" onclick="openModal('p1')">
       <div class="project-num">01</div>
       <div class="project-type">Data Cleaning</div>
       <h3 class="project-title">Multi-Tool Data Cleaning Project</h3>
@@ -319,9 +480,10 @@
         <span class="project-tag">OpenRefine</span>
         <span class="project-tag">NumPy</span>
       </div>
-      <span class="project-link">View Details <span>→</span></span>
+      <span class="project-link">View Details →</span>
     </div>
-    <div class="project-card reveal" onclick="openModal('p2')">
+
+    <div class="project-card" onclick="openModal('p2')">
       <div class="project-num">02</div>
       <div class="project-type">SQL · Database Design</div>
       <h3 class="project-title">Hospital Database System</h3>
@@ -335,9 +497,10 @@
         <span class="project-tag">Relational DB</span>
         <span class="project-tag">Schema Design</span>
       </div>
-      <span class="project-link">View Details <span>→</span></span>
+      <span class="project-link">View Details →</span>
     </div>
-    <div class="project-card reveal" onclick="openModal('p3')">
+
+    <div class="project-card" onclick="openModal('p3')">
       <div class="project-num">03</div>
       <div class="project-type">SQL · Database Design</div>
       <h3 class="project-title">Clinic Database System</h3>
@@ -351,9 +514,10 @@
         <span class="project-tag">Relational DB</span>
         <span class="project-tag">Healthcare Data</span>
       </div>
-      <span class="project-link">View Details <span>→</span></span>
+      <span class="project-link">View Details →</span>
     </div>
-    <div class="project-card reveal" onclick="openModal('p4')">
+
+    <div class="project-card" onclick="openModal('p4')">
       <div class="project-num">04</div>
       <div class="project-type">Data Visualization</div>
       <h3 class="project-title">Interactive Power BI Dashboard</h3>
@@ -367,8 +531,9 @@
         <span class="project-tag">Dashboards</span>
         <span class="project-tag">Data Storytelling</span>
       </div>
-      <span class="project-link">View Details <span>→</span></span>
+      <span class="project-link">View Details →</span>
     </div>
+
   </div>
 </section>
 
@@ -381,7 +546,7 @@
       Open to data analytics roles, freelance projects, and collaborations.
       Have a dataset that needs taming? I'd love to hear from you.
     </p>
-    <div class="contact-cards reveal">
+    <div class="contact-cards">
       <a href="https://github.com/jameskins-svg" class="contact-card" target="_blank">
         <span class="contact-card-icon">🐙</span>
         <div class="contact-card-info">
@@ -389,22 +554,22 @@
           <span class="contact-card-val">github.com/jameskins-svg</span>
         </div>
       </a>
-      <a href="/cdn-cgi/l/email-protection#4b2e2626212a32212a262e380b2c262a222765282426" class="contact-card">
+      <a href="mailto&#58;emmjayjames&#64;gmail&#46;com" class="contact-card">
         <span class="contact-card-icon">✉️</span>
         <div class="contact-card-info">
           <span class="contact-card-label">Email</span>
-          <span class="contact-card-val"><span class="__cf_email__" data-cfemail="46232b2b2c273f2c272b233506212b272f2a6825292b">[email&#160;protected]</span></span>
+          <span class="contact-card-val">emmjayjames&#64;gmail.com</span>
         </div>
       </a>
       <a href="https://linkedin.com/in/yourhandle" class="contact-card" target="_blank">
         <span class="contact-card-icon">💼</span>
         <div class="contact-card-info">
           <span class="contact-card-label">LinkedIn</span>
-          <span class="contact-card-val">Add your LinkedIn</span>
+          <span class="contact-card-val">Add your LinkedIn handle</span>
         </div>
       </a>
     </div>
-    <form class="contact-form reveal" onsubmit="return false;">
+    <form class="contact-form" onsubmit="return false;">
       <div class="form-row">
         <div class="form-group">
           <label class="form-label">Name</label>
@@ -423,11 +588,12 @@
         <label class="form-label">Message</label>
         <textarea class="form-textarea" placeholder="Tell me about your project or how I can help..."></textarea>
       </div>
-      <button type="submit" class="btn-primary" style="width:fit-content">Send Message →</button>
+      <button type="submit" class="btn-primary">Send Message →</button>
     </form>
   </div>
 </section>
 
+<!-- FOOTER -->
 <footer>
   <div class="footer-logo">JM.</div>
   <p class="footer-copy">© 2025 James Munene Mwai · Nairobi, Kenya</p>
@@ -438,30 +604,44 @@
   </ul>
 </footer>
 
-<!-- PROJECT MODALS -->
-<div id="modal-overlay" onclick="closeModal()" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.75);z-index:500;backdrop-filter:blur(6px);"></div>
-
-<div id="modal" style="display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);z-index:600;width:min(680px,92vw);max-height:85vh;overflow-y:auto;background:#111820;border:1px solid #1e2d3d;border-radius:4px;padding:2.5rem;">
-  <button onclick="closeModal()" style="position:absolute;top:1.2rem;right:1.4rem;background:none;border:none;color:#6b7e94;font-size:1.4rem;cursor:none;line-height:1;">✕</button>
-  <div id="modal-content"></div>
+<!-- MODALS -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModal()"></div>
+<div class="modal-box" id="modalBox">
+  <button class="modal-close" onclick="closeModal()">✕</button>
+  <div id="modalContent"></div>
 </div>
 
-<style>
-  .project-card { cursor: none; }
-  .modal-type { font-family: 'DM Mono', monospace; font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: #00f5c4; margin-bottom: 0.6rem; }
-  .modal-title { font-family: 'DM Serif Display', serif; font-size: 1.8rem; color: #e8edf3; margin-bottom: 1.2rem; line-height: 1.2; }
-  .modal-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1.5rem; }
-  .modal-tag { font-family: 'DM Mono', monospace; font-size: 0.65rem; padding: 0.2rem 0.6rem; background: rgba(255,77,109,0.08); border: 1px solid rgba(255,77,109,0.2); color: #ff4d6d; border-radius: 2px; }
-  .modal-body { font-size: 0.95rem; line-height: 1.8; color: #6b7e94; margin-bottom: 1.5rem; }
-  .modal-body p { margin-bottom: 0.9rem; }
-  .modal-body strong { color: #e8edf3; }
-  .modal-divider { height: 1px; background: #1e2d3d; margin: 1.4rem 0; }
-  .modal-gh-btn { font-family: 'DM Mono', monospace; font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.8rem 1.6rem; background: #00f5c4; color: #080b10; border: none; border-radius: 2px; text-decoration: none; font-weight: 500; display: inline-block; transition: transform 0.2s, box-shadow 0.2s; }
-  .modal-gh-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,245,196,0.2); }
-  .modal-no-link { font-family: 'DM Mono', monospace; font-size: 0.75rem; color: #6b7e94; letter-spacing: 0.08em; }
-</style>
+<script>
+  /* ── Typewriter ── */
+  const lines = [
+    'Turning raw data into real insights.',
+    'Cleaning datasets, one column at a time.',
+    'Building dashboards that drive decisions.',
+    'Finding the story hiding in your data.'
+  ];
+  let li = 0, ci = 0, deleting = false;
+  const tw = document.getElementById('typewriter');
+  function type() {
+    const cur = lines[li];
+    tw.textContent = deleting ? cur.slice(0, --ci) : cur.slice(0, ++ci);
+    if (!deleting && ci === cur.length) { deleting = true; setTimeout(type, 2000); return; }
+    if (deleting && ci === 0) { deleting = false; li = (li + 1) % lines.length; }
+    setTimeout(type, deleting ? 38 : 68);
+  }
+  type();
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  /* ── Nav highlight on scroll ── */
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => { if (window.scrollY >= s.offsetTop - 200) current = s.id; });
+    navLinks.forEach(a => {
+      a.style.color = a.getAttribute('href') === '#' + current ? 'var(--accent)' : '';
+    });
+  });
+
+  /* ── Project Modals ── */
   const projects = {
     p1: {
       type: 'Data Cleaning',
@@ -470,8 +650,8 @@
       body: `
         <p>This project demonstrates my ability to tackle dirty, real-world datasets using three different tools depending on the scale and complexity of the cleaning task.</p>
         <p><strong>Microsoft Excel</strong> was used for quick formatting fixes — removing duplicates, correcting inconsistent date formats, and handling simple missing values using filters and formulas.</p>
-        <p><strong>Python (Pandas & NumPy)</strong> was used for more advanced cleaning: handling nulls with <code style="background:#0d1117;padding:0.1rem 0.4rem;border-radius:2px;color:#00f5c4;font-size:0.85rem">dropna()</code> and <code style="background:#0d1117;padding:0.1rem 0.4rem;border-radius:2px;color:#00f5c4;font-size:0.85rem">fillna()</code>, detecting outliers, standardizing column names, and reshaping datasets for analysis.</p>
-        <p><strong>OpenRefine</strong> was used for large-scale text normalization — clustering similar values (e.g. "Nairobi" vs "NAIROBI"), fixing encoding issues, and performing batch transformations using GREL expressions.</p>
+        <p><strong>Python (Pandas &amp; NumPy)</strong> was used for more advanced cleaning: handling nulls, detecting outliers, standardizing column names, and reshaping datasets for analysis.</p>
+        <p><strong>OpenRefine</strong> was used for large-scale text normalization — clustering similar values, fixing encoding issues, and performing batch transformations.</p>
         <p>The end result was a clean, consistent dataset ready for analysis and visualization.</p>
       `,
       github: null
@@ -482,9 +662,8 @@
       tags: ['SQL', 'Relational DB', 'Schema Design', 'Data Tools Final Exam'],
       body: `
         <p>This was my <strong>Data Tools final exam project</strong> — a full relational hospital database designed and built from scratch in SQL.</p>
-        <p>The database covers core hospital operations including <strong>patient records</strong>, <strong>doctor profiles</strong>, <strong>wards</strong>, <strong>admissions</strong>, and <strong>medical procedures</strong>. Tables were normalized to 3NF to eliminate redundancy.</p>
-        <p>Key SQL skills demonstrated include: <strong>CREATE TABLE</strong> with primary/foreign keys, <strong>INSERT</strong> statements, complex <strong>JOIN</strong> queries, <strong>GROUP BY</strong> aggregations, and subqueries for reporting.</p>
-        <p>Example query: Finding all patients admitted in the last 30 days grouped by ward, sorted by severity.</p>
+        <p>The database covers core hospital operations including <strong>patient records</strong>, <strong>doctor profiles</strong>, <strong>wards</strong>, <strong>admissions</strong>, and <strong>medical procedures</strong>. Tables were normalized to eliminate redundancy.</p>
+        <p>Key SQL skills demonstrated include: CREATE TABLE with primary/foreign keys, INSERT statements, complex JOIN queries, GROUP BY aggregations, and subqueries for reporting.</p>
       `,
       github: 'https://github.com/jameskins-svg/Hospital-SQL-Project'
     },
@@ -495,8 +674,7 @@
       body: `
         <p>A full clinic management database built in SQL, modelling real-world healthcare workflows end to end.</p>
         <p>The schema covers <strong>patient registration</strong>, <strong>doctor profiles</strong>, <strong>appointment scheduling</strong>, <strong>prescription records</strong>, and <strong>billing</strong> — all linked via properly constrained foreign keys.</p>
-        <p>This project demonstrates my ability to translate real-world business processes into clean database structures. I wrote queries to: retrieve upcoming appointments by doctor, pull prescription history per patient, and generate simple billing summaries.</p>
-        <p>The project showcases schema design thinking, referential integrity, and practical SQL query writing for healthcare data scenarios.</p>
+        <p>This project showcases schema design thinking, referential integrity, and practical SQL query writing for healthcare data scenarios.</p>
       `,
       github: 'https://github.com/jameskins-svg/Clinic-Database-System-SQL-project'
     },
@@ -506,8 +684,8 @@
       tags: ['Power BI', 'Interactive Dashboards', 'Data Storytelling', 'Business Intelligence'],
       body: `
         <p>This project showcases my ability to take a raw dataset and transform it into a compelling, interactive Power BI dashboard that tells a clear data story.</p>
-        <p>The dashboard features <strong>slicers and filters</strong> for dynamic exploration, <strong>KPI cards</strong> for at-a-glance metrics, <strong>bar and line charts</strong> for trend analysis, and <strong>drill-through pages</strong> for deeper breakdowns.</p>
-        <p>The design prioritized <strong>clarity and usability</strong> — making it easy for non-technical stakeholders to interact with the data and draw their own conclusions without needing a data background.</p>
+        <p>The dashboard features <strong>slicers and filters</strong> for dynamic exploration, <strong>KPI cards</strong> for at-a-glance metrics, and <strong>bar and line charts</strong> for trend analysis.</p>
+        <p>The design prioritized <strong>clarity and usability</strong> — making it easy for non-technical stakeholders to interact with the data and draw their own conclusions.</p>
         <p>Key skills demonstrated: data modelling in Power BI, DAX measures, visual hierarchy, and storytelling with data.</p>
       `,
       github: null
@@ -517,54 +695,30 @@
   function openModal(id) {
     const p = projects[id];
     const ghBtn = p.github
-      ? `<a href="${p.github}" target="_blank" class="modal-gh-btn">🐙 View on GitHub →</a>`
-      : `<p class="modal-no-link">📁 Source files available on request</p>`;
-    document.getElementById('modal-content').innerHTML = `
-      <div class="modal-type">${p.type}</div>
-      <div class="modal-title">${p.title}</div>
-      <div class="modal-tags">${p.tags.map(t => `<span class="modal-tag">${t}</span>`).join('')}</div>
-      <div class="modal-body">${p.body}</div>
-      <div class="modal-divider"></div>
-      ${ghBtn}
-    `;
-    document.getElementById('modal-overlay').style.display = 'block';
-    document.getElementById('modal').style.display = 'block';
+      ? '<a href="' + p.github + '" target="_blank" class="modal-gh-btn">🐙 View on GitHub →</a>'
+      : '<p class="modal-no-link">📁 Source files available on request</p>';
+    const tagsHtml = p.tags.map(t => '<span class="modal-tag">' + t + '</span>').join('');
+    document.getElementById('modalContent').innerHTML =
+      '<div class="modal-type">' + p.type + '</div>' +
+      '<div class="modal-title">' + p.title + '</div>' +
+      '<div class="modal-tags">' + tagsHtml + '</div>' +
+      '<div class="modal-body">' + p.body + '</div>' +
+      '<div class="modal-divider"></div>' +
+      ghBtn;
+    document.getElementById('modalOverlay').classList.add('open');
+    document.getElementById('modalBox').classList.add('open');
     document.body.style.overflow = 'hidden';
   }
 
   function closeModal() {
-    document.getElementById('modal-overlay').style.display = 'none';
-    document.getElementById('modal').style.display = 'none';
+    document.getElementById('modalOverlay').classList.remove('open');
+    document.getElementById('modalBox').classList.remove('open');
     document.body.style.overflow = '';
   }
 
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
-
-  // Enable animations only when JS is ready
-  document.body.classList.add('js-ready');
-
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
-    });
-  }, { threshold: 0, rootMargin: '0px 0px -40px 0px' });
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-  // Fallback: reveal all after 2s
-  setTimeout(() => {
-    document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
-  }, 2000);
-
-  const sections = document.querySelectorAll('section[id]');
-  const navLinks = document.querySelectorAll('.nav-links a');
-  window.addEventListener('scroll', () => {
-    let cur = '';
-    sections.forEach(s => { if (window.scrollY >= s.offsetTop - 200) cur = s.id; });
-    navLinks.forEach(a => { a.style.color = a.getAttribute('href') === `#${cur}` ? 'var(--accent)' : ''; });
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeModal();
   });
-
-  const lines = [
-    'Turning raw data into real insights.',
-    'Cleaning datasets, one column at a time.',
-    'Building dashboards that drive decisions.',
-    
+</script>
+</body>
+</html>
