@@ -300,34 +300,7 @@
       </ul>
     </div>
   </div>
-  <div class="skill-bars reveal">
-    <h3>Proficiency Levels</h3>
-    <div class="skill-bar-row">
-      <span class="skill-bar-label">Microsoft Excel</span>
-      <div class="skill-bar-track"><div class="skill-bar-fill" style="width:90%"></div></div>
-      <span class="skill-bar-pct">90%</span>
-    </div>
-    <div class="skill-bar-row">
-      <span class="skill-bar-label">SQL</span>
-      <div class="skill-bar-track"><div class="skill-bar-fill" style="width:85%;animation-delay:0.1s"></div></div>
-      <span class="skill-bar-pct">85%</span>
-    </div>
-    <div class="skill-bar-row">
-      <span class="skill-bar-label">Power BI</span>
-      <div class="skill-bar-track"><div class="skill-bar-fill" style="width:80%;animation-delay:0.2s"></div></div>
-      <span class="skill-bar-pct">80%</span>
-    </div>
-    <div class="skill-bar-row">
-      <span class="skill-bar-label">Python / Pandas</span>
-      <div class="skill-bar-track"><div class="skill-bar-fill" style="width:75%;animation-delay:0.3s"></div></div>
-      <span class="skill-bar-pct">75%</span>
-    </div>
-    <div class="skill-bar-row">
-      <span class="skill-bar-label">OpenRefine</span>
-      <div class="skill-bar-track"><div class="skill-bar-fill" style="width:70%;animation-delay:0.4s"></div></div>
-      <span class="skill-bar-pct">70%</span>
-    </div>
-  </div>
+
 </section>
 
 <!-- PROJECTS -->
@@ -420,11 +393,11 @@
           <span class="contact-card-val">github.com/jameskins-svg</span>
         </div>
       </a>
-      <a href="mailto:your@email.com" class="contact-card">
+      <a href="mailto:emmjayjames@gmail.com" class="contact-card">
         <span class="contact-card-icon">✉️</span>
         <div class="contact-card-info">
           <span class="contact-card-label">Email</span>
-          <span class="contact-card-val">your@email.com</span>
+          <span class="contact-card-val">emmjayjames@gmail.com</span>
         </div>
       </a>
       <a href="https://linkedin.com/in/yourhandle" class="contact-card" target="_blank">
@@ -492,7 +465,7 @@
   .modal-no-link { font-family: 'DM Mono', monospace; font-size: 0.75rem; color: #6b7e94; letter-spacing: 0.08em; }
 </style>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   const projects = {
     p1: {
       type: 'Data Cleaning',
@@ -614,11 +587,3 @@
   function type() {
     const cur = lines[li];
     tw.textContent = del ? cur.slice(0, --ci) : cur.slice(0, ++ci);
-    if (!del && ci === cur.length) { del = true; setTimeout(type, 2000); return; }
-    if (del && ci === 0) { del = false; li = (li + 1) % lines.length; }
-    setTimeout(type, del ? 38 : 68);
-  }
-  type();
-</script>
-</body>
-</html>
